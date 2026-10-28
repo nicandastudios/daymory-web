@@ -26,23 +26,61 @@ ol.versionen { list-style: none; margin: 1.5rem 0 0; padding: 0; }
 ol.versionen > li { border-top: 1px solid var(--linie); padding: 1rem 0; }
 ul { margin: .2rem 0 .4rem; padding-left: 1.2rem; }
 ul li { margin: .35rem 0; }
+ol.versionen ul { list-style: disc; }
+ol.versionen ul li::marker { color: var(--leise); }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+ol.versionen > li { scroll-margin-top: 1.25rem; }
+ol.versionen > li:target h2 { color: var(--akzent); }
+.kopf { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1rem 0; }
+.kopf + nav.inhalt + main { padding-top: 1rem; }
+nav.inhalt { max-width: 42rem; margin: 0 auto; padding: 0 1rem; }
+nav.inhalt .inhalt-titel { font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--leise); margin: 0 0 .5rem; }
+nav.inhalt ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
+nav.inhalt li { margin: 0; border-bottom: 1px solid var(--linie); }
+nav.inhalt a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .55rem 0;
+  text-decoration: none; color: var(--text); }
+nav.inhalt .tag { color: var(--leise); font-variant-numeric: tabular-nums; }
+nav.inhalt a:hover .nummer, nav.inhalt a:focus-visible .nummer { color: var(--akzent); text-decoration: underline; }
+nav.inhalt a:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+@media (min-width: 60rem) {
+  .seite { display: grid; grid-template-columns: 16rem minmax(0, 42rem); column-gap: 3rem; align-items: start;
+    grid-template-areas: "inhalt kopf" "inhalt liste" "inhalt fuss"; }
+  .seite > .kopf { grid-area: kopf; margin: 0; padding: 2.5rem 1rem 0 0; }
+  .seite > main { grid-area: liste; margin: 0; padding: 1rem 1rem 2rem 0; }
+  .seite > footer { grid-area: fuss; margin: 0; padding-left: 0; }
+  .seite > nav.inhalt { grid-area: inhalt; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; margin: 0;
+    padding: 2.5rem 1.25rem 2rem 1.5rem; min-height: 100vh; border-right: 1px solid var(--linie); }
+}
 ul.apps { list-style: none; padding: 0; margin: 1.5rem 0 0; }
 ul.apps li { border-top: 1px solid var(--linie); padding: .9rem 0; margin: 0; font-size: 1.15rem; }
 footer { border-top: 1px solid var(--linie); padding-top: 1rem; padding-bottom: 2rem; font-size: .9rem; }
 </style>
 </head>
 <body>
-<main>
+<div class="seite">
+<header class="kopf">
 <h1>Daymory – Updates</h1>
 <p>Jede Version von Daymory, die neueste zuerst – mit Datum, Versionsnummer, neuen Funktionen und Fehlerbehebungen.</p>
 <p class="leise">Daymory ist noch nicht veröffentlicht.</p>
+</header>
+<nav class="inhalt" aria-label="Versionen">
+<p class="inhalt-titel">Versionen</p>
+<ol>
+<li><a href="#version-0-75-1" aria-label="Version 0.75.1 vom 28.10.2026"><span class="nummer">0.75.1</span><span class="tag">28.10.2026</span></a></li>
+<li><a href="#version-0-75-0" aria-label="Version 0.75.0 vom 27.10.2026"><span class="nummer">0.75.0</span><span class="tag">27.10.2026</span></a></li>
+</ol>
+</nav>
+<main>
 <ol class="versionen">
-<li><h2>Version 0.75.1 <span class="leise">· 28.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Im Archiv ist die laufende Tour gekennzeichnet und zeigt Distanz, Dauer und Aufstieg laufend. Eine unterbrochene Tour ist als offen gekennzeichnet.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass der Aufstieg während einer Tour lange fehlte und erst später nachkam. Das ist behoben: Er kommt laufend aus dem Höhenmodell, wie die Distanz – auch auf dem Sperrbildschirm und in der Dynamic Island.</li><li>Es konnte vorkommen, dass eine gespeicherte Tour mit einer geraden Linie von einem früheren Ort begann und deshalb eine zu lange Strecke zeigte. Das ist behoben: Die Linie ist ausgeblendet, und die Strecke ist ohne sie gerechnet. Gespeichert bleibt die Tour, wie sie war.</li><li>Es konnte vorkommen, dass eine einzige beschädigte Tour alle Touren verbarg. Das ist behoben: Die übrigen erscheinen, und die App sagt, dass eine Tour nicht gelesen werden konnte.</li></ul></li>
-<li><h2>Version 0.75.0 <span class="leise">· 27.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Jede Tour zeigt Aufstieg und Abstieg aus einem Höhenmodell, ein Höhenprofil, die Höhe am Start und am Ziel, den höchsten und den tiefsten Punkt, die Geschwindigkeiten und die Luftlinie.</li><li>Nach einem Update zeigt ein Fenster, was neu ist, und im Profil steht der Versionsverlauf.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass eine neue Tour an einem früheren Ort begann und von dort eine gerade Linie zog. Das ist behoben.</li><li>Es konnte vorkommen, dass die Karte beim Start einer Tour die ganze Welt zeigte. Das ist behoben.</li><li>Es konnte vorkommen, dass bei einer Tour «Aufstieg 0 m» stand, obwohl es bergauf ging. Das ist behoben.</li><li>Es konnte vorkommen, dass Karten beim Öffnen etwas länger brauchten, bis sie fertig gezeichnet waren. Das ist behoben.</li></ul></li>
+<li id="version-0-75-1"><h2>Version 0.75.1 <span class="leise">· 28.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Im Archiv ist die laufende Tour gekennzeichnet und zeigt Distanz, Dauer und Aufstieg laufend. Eine unterbrochene Tour ist als offen gekennzeichnet.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass der Aufstieg während einer Tour lange fehlte und erst später nachkam. Das ist behoben: Er kommt laufend aus dem Höhenmodell, wie die Distanz – auch auf dem Sperrbildschirm und in der Dynamic Island.</li><li>Es konnte vorkommen, dass eine gespeicherte Tour mit einer geraden Linie von einem früheren Ort begann und deshalb eine zu lange Strecke zeigte. Das ist behoben: Die Linie ist ausgeblendet, und die Strecke ist ohne sie gerechnet. Gespeichert bleibt die Tour, wie sie war.</li><li>Es konnte vorkommen, dass eine einzige beschädigte Tour alle Touren verbarg. Das ist behoben: Die übrigen erscheinen, und die App sagt, dass eine Tour nicht gelesen werden konnte.</li></ul></li>
+<li id="version-0-75-0"><h2>Version 0.75.0 <span class="leise">· 27.10.2026</span></h2><h3>Neue Funktionen</h3><ul><li>Jede Tour zeigt Aufstieg und Abstieg aus einem Höhenmodell, ein Höhenprofil, die Höhe am Start und am Ziel, den höchsten und den tiefsten Punkt, die Geschwindigkeiten und die Luftlinie.</li><li>Nach einem Update zeigt ein Fenster, was neu ist, und im Profil steht der Versionsverlauf.</li></ul><h3>Fehlerbehebungen</h3><ul><li>Es konnte vorkommen, dass eine neue Tour an einem früheren Ort begann und von dort eine gerade Linie zog. Das ist behoben.</li><li>Es konnte vorkommen, dass die Karte beim Start einer Tour die ganze Welt zeigte. Das ist behoben.</li><li>Es konnte vorkommen, dass bei einer Tour «Aufstieg 0 m» stand, obwohl es bergauf ging. Das ist behoben.</li><li>Es konnte vorkommen, dass Karten beim Öffnen etwas länger brauchten, bis sie fertig gezeichnet waren. Das ist behoben.</li></ul></li>
 </ol>
 </main>
 <footer>
 <p>Nicanda Studios · <a href="https://legal.nicandastudios.ch/">Rechtliches</a> · <a href="../">Zur Übersicht</a></p>
 </footer>
+</div>
 </body>
 </html>
